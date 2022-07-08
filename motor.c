@@ -1,10 +1,10 @@
 #include <math.h>
 #include <stdio.h>
+#include "utilidade.h"
 #define AreaFrontal 2.14
 #define CoeficienteDeArrasto 0.35
 #define RendimentoTransmissao 0.94
 #define GravidadeTerrestre 9.81
-
 /* 
    0 = Tempo
    1 = Velocidade
@@ -61,6 +61,24 @@ float mediaCombustivelGasto(float *consumo, int tamanho){
     return soma / tamanho;
 }
 
-int velocidade(){
-    return 0;
+float pegaVelocidadeMedia(float *trajeto, float tamanho){
+    float vAnterior = 0, distancia = 0; 
+    int linha =0;
+    for (int i = 0; i < tamanho; i++){
+        linha = i * 3;
+        distancia+= *(trajeto + linha + 1);
+        vAnterior = *(trajeto + linha + 1);
+        
+    }
+    printf("Distancia percorrida %.2f", distancia / 765);
+}
+
+void calculaDados(float *trajeto, int tamanho, float torque, float *consumo, int rpm, int massa_do_carro) {
+    pegaAceleracao(trajeto,tamanho);
+    pegaForcaResultante(trajeto,consumo,massa_do_carro,rpm, torque, tamanho);
+    float consumoMedio =mediaCombustivelGasto(consumo, tamanho);
+    printf("Consumo médio do seu veículo é de %.2f km/l", consumoMedio);
+    pegaVelocidadeMedia(trajeto,tamanho);
+    pegaMaior(&trajeto,tamanho, 1);
+   
 }

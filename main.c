@@ -15,10 +15,8 @@ int main (){
     massa_do_carro = lerInt("Qual O peso do seu veículo em quilos?");
     rpm = lerInt("Qual a rotação de torque máximo do seu carro?");
     torque = lerFloat("Qual o torque máximo do seu motor ?");
-    pegaAceleracao(trajeto, tamanho);
-    pegaForcaResultante(trajeto,consumo,massa_do_carro,rpm, torque, tamanho);
-    float consumoMedio =mediaCombustivelGasto(consumo, tamanho);
-    printf("Consumo médio do seu veículo é de %.2f km/l", consumoMedio);
+   
+    calculaDados(trajeto,tamanho,torque,consumo,rpm,massa_do_carro);
     
 
 
