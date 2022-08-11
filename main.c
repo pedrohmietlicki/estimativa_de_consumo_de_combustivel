@@ -14,10 +14,12 @@ int main()
     rpm = lerInt("Qual a rotação de torque máximo do seu carro?");
     torque = lerFloat("Qual o torque máximo do seu motor ?");
     pegaAceleracao(trajeto, tamanho);
-    pegaForcaResultante(trajeto,consumo,massa_do_carro,rpm, torque, tamanho);
-    float consumoMedio =mediaCombustivelGasto(consumo, tamanho);
-    printf("Consumo médio do seu veículo é de %.2f km/l", consumoMedio);
-    
+    pegaForcaResultante(trajeto, consumo, massa_do_carro, rpm, torque, tamanho);
+    float consumoMedio = mediaCombustivelGasto(consumo, tamanho);
+    float distanciaPerco = distanciaPercorrida(trajeto, tamanho);
+    float pontOrigem = distanciaPerco / consumoMedio;
+    float vInicial = calculaMediaVelocidade(trajeto, tamanho);
+    printf("Velocidade media antes do ajuste %.2f km/h\n", vInicial * 3.6);
 
     float novoConumo = calculaVelocidade(pontOrigem, trajeto, tamanho, consumo, massa_do_carro, rpm, torque, 0, 1, vInicial);
 
