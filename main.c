@@ -1,18 +1,26 @@
 #include <stdio.h>
 #include "lib.h"
+#include <stdlib.h>
 int main()
 {
 
     int rpm, massa_do_carro;
-
     int tamanho = numeroDeLinhas();
-
-    float torque, trajeto[tamanho][3];
-    float consumo[tamanho];
-    lerArquivo(trajeto);
+    printf("%d\n",tamanho * sizeof(float));
+    float **trajeto;
+    trajeto = (float **)malloc(tamanho * sizeof(float *));
+    for(int i = 0; i< tamanho; i++){
+        trajeto[i] = (float *) malloc(4 * sizeof(float));
+        trajeto[i][0] =2;
+        trajeto[i][1] =0;
+    }
+    float torque;
+    float *consumo;
+    consumo =  malloc(tamanho *sizeof(float));
+    lerArquivo(trajeto,tamanho);
     massa_do_carro = lerInt("Qual O peso do seu veiculo em quilos?");
-    rpm = lerInt("Qual a rotação de torque máximo do seu carro?");
-    torque = lerFloat("Qual o torque máximo do seu motor ?");
+    rpm = lerInt("Qual a rotacao de torque máximo do seu carro?");
+    torque = lerFloat("Qual o torque maximo do seu motor ?");
     pegaAceleracao(trajeto, tamanho);
     pegaForcaResultante(trajeto, consumo, massa_do_carro, rpm, torque, tamanho);
     float consumoMedio = mediaCombustivelGasto(consumo, tamanho);

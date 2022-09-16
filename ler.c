@@ -19,22 +19,22 @@ float lerFloat(char *mensagem)
     return valor;
 }
 
-int lerArquivo(float *trajeto)
+
+int lerArquivo(float **trajeto, int tamanho)
 {
-    FILE *arquivo;
-    arquivo = fopen("us06col.txt", "r");
-    char tempo[50], velocidade[50];
-    int i = 0;
+    FILE *arquivo =fopen("us06col.txt", "r");
+    float tempo, velocidade;
+    int i = 0, acum = 0;
     int linha = 0;
-    rewind(arquivo);
-    while (fscanf(arquivo, "%s %s\n", &tempo, &velocidade) != EOF)
+
+    while (fscanf(arquivo, "%f %f\n", &tempo, &velocidade) != EOF)
     {
-        *(trajeto + linha + 0) = (float)atof(tempo);
-        // Converte milhas por hora para m/s
-        *(trajeto + linha + 1) = atof(velocidade) / 2.237;
+         trajeto[i][0] = tempo;
+        // // Converte milhas por hora para m/s
+        trajeto[i][1] = (float)(velocidade / 2.237);
         i++;
-        linha = i * 3;
-        fflush(stdin);
+
+        // fflush(stdin);
     }
     fclose(arquivo);
 }
