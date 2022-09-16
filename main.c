@@ -20,7 +20,7 @@ int main()
     lerArquivo(trajeto,tamanho);
     massa_do_carro = lerInt("Qual O peso do seu veiculo em quilos?");
     rpm = lerInt("Qual a rotacao de torque máximo do seu carro?");
-    torque = lerFloat("Qual o torque maximo do seu motor ?");
+    torque = lerFloat("Qual o torque ma-ximo do seu motor ?");
     pegaAceleracao(trajeto, tamanho);
     pegaForcaResultante(trajeto, consumo, massa_do_carro, rpm, torque, tamanho);
     float consumoMedio = mediaCombustivelGasto(consumo, tamanho);
